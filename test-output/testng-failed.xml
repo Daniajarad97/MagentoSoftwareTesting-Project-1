@@ -5,8 +5,8 @@
     <classes>
       <class name="magentoSoftwareTestingBoard.MagentoSoftwareTesting">
         <methods>
+          <include name="login"/>
           <include name="setup"/>
-          <include name="signUp"/>
         </methods>
       </class> <!-- magentoSoftwareTestingBoard.MagentoSoftwareTesting -->
     </classes>

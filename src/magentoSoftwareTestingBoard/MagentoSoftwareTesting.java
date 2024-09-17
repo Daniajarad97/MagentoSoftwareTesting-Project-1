@@ -16,7 +16,9 @@ public class MagentoSoftwareTesting {
 	WebDriver driver = new ChromeDriver();
 	Random rand = new Random();
 	String URLSite = "https://magento.softwaretestingboard.com/";
+	String singOutPage = "https://magento.softwaretestingboard.com/customer/account/logout/";
 	String password = "12345678#Test";
+	String emailAddressToSignInPage = "";
 
 	@BeforeTest
 	public void setup() {
@@ -44,7 +46,7 @@ public class MagentoSoftwareTesting {
 		int randomIndexForEmail = rand.nextInt(email_Address.length);
 		String randFirstName = firs_tNames[randomIndexForFirstName];
 		String randLastName = last_Names[randomIndexForLastName];
-		String randEmail = email_Address[randomIndexForEmail];
+		String domanEmail = email_Address[randomIndexForEmail];
 		String firstName = "firstname";
 		String lastName = "lastname";
 		String emailAddress = "email_address";
@@ -59,14 +61,15 @@ public class MagentoSoftwareTesting {
 
 		firstNameButtom.sendKeys(randFirstName);
 		lastNameButton.sendKeys(randLastName);
-		emailButton.sendKeys(randFirstName + randLastName + randNamber + randEmail);
+		emailButton.sendKeys(randFirstName + randLastName + randNamber + domanEmail);
+		emailAddressToSignInPage = randFirstName + randLastName + randNamber + domanEmail;
 		passwordButton.sendKeys(password);
 		passwordConfirmationButton.sendKeys(password);
 
 		WebElement submitButton = driver.findElement(By.cssSelector("button[title='Create an Account']"));
 		submitButton.click();
-		
-		//Thread.sleep(1000);
+
+		Thread.sleep(1000);
 
 		WebElement messageAsWebElement = driver
 				.findElement(By.cssSelector("div[data-bind='html: $parent.prepareMessageForHtml(message.text)']"));
@@ -75,6 +78,40 @@ public class MagentoSoftwareTesting {
 		Assert.assertEquals(actualMessage, expectedMessage);
 
 	}
-	
+
+	@Test(priority = 2, enabled = true)
+	public void signUp() {
+		driver.get(singOutPage);
+
+		WebElement signOutAsElement = driver.findElement(By.xpath("//span[@data-ui-id='page-title-wrapper']"));
+		String actualSignOut = signOutAsElement.getText();
+		String expectedSignOut = "You are signed out";
+		Assert.assertEquals(actualSignOut, expectedSignOut);
+
+	}
+
+	@Test(priority = 3, enabled = true)
+	public void login() throws InterruptedException {
+
+		WebElement loginButton = driver.findElement(By.cssSelector("div[class='panel header'] li[data-label='or'] a"));
+		loginButton.click();
+
+		WebElement emailInput = driver.findElement(By.id("email"));
+		WebElement passwordInput = driver.findElement(By.id("pass"));
+		WebElement signInButton = driver.findElement(By.id("send2"));
+
+		emailInput.sendKeys(emailAddressToSignInPage);
+		passwordInput.sendKeys(password);
+		signInButton.click();
+
+		Thread.sleep(1000);
+		
+		String messageAsSingIn = driver.findElement(By.cssSelector("div[class='panel header'] span[class='logged-in']"))
+				.getText();
+		boolean actualMessage = messageAsSingIn.contains("Welcome");
+		boolean expectedMessage = true;
+		Assert.assertEquals(actualMessage, expectedMessage);
+
+	}
 
 }
