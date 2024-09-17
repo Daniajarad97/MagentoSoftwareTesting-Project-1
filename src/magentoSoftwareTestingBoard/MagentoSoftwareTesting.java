@@ -105,7 +105,7 @@ public class MagentoSoftwareTesting {
 		signInButton.click();
 
 		Thread.sleep(1000);
-		
+
 		String messageAsSingIn = driver.findElement(By.cssSelector("div[class='panel header'] span[class='logged-in']"))
 				.getText();
 		boolean actualMessage = messageAsSingIn.contains("Welcome");
