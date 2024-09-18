@@ -94,7 +94,7 @@ public class MagentoSoftwareTesting {
 	}
 
 	@Test(priority = 3, enabled = true)
-	public void login() throws InterruptedException {
+	public void signIn() throws InterruptedException {
 
 		WebElement loginButton = driver.findElement(By.cssSelector("div[class='panel header'] li[data-label='or'] a"));
 		loginButton.click();
@@ -177,7 +177,7 @@ public class MagentoSoftwareTesting {
 		}
 
 		driver.navigate().refresh();
-		
+		Thread.sleep(1000);
 
 		WebElement cartButton = driver.findElement(By.className("counter"));
 		cartButton.click();
@@ -210,7 +210,7 @@ public class MagentoSoftwareTesting {
 
 	@Test(priority = 5, enabled = true)
 	public void addMenItems() {
-		
+
 		int randItems = rand.nextInt();
 		WebElement menSection = driver.findElement(By.id("ui-id-5"));
 		menSection.click();
