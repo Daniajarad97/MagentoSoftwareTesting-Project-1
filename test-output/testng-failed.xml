@@ -5,7 +5,7 @@
     <classes>
       <class name="magentoSoftwareTestingBoard.MagentoSoftwareTesting">
         <methods>
-          <include name="login"/>
+          <include name="addWomenItem"/>
           <include name="setup"/>
         </methods>
       </class> <!-- magentoSoftwareTestingBoard.MagentoSoftwareTesting -->

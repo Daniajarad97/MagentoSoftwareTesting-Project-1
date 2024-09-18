@@ -1,9 +1,12 @@
 package magentoSoftwareTestingBoard;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -111,6 +114,132 @@ public class MagentoSoftwareTesting {
 		boolean actualMessage = messageAsSingIn.contains("Welcome");
 		boolean expectedMessage = true;
 		Assert.assertEquals(actualMessage, expectedMessage);
+
+	}
+
+	@Test(priority = 4, enabled = true)
+	public void addWomenItem() throws InterruptedException {
+
+		int randItems = rand.nextInt();
+
+		WebElement womenSection = driver
+				.findElement(By.cssSelector("a[id='ui-id-4'] span[class='ui-menu-icon ui-icon ui-icon-carat-1-e']"));
+		womenSection.click();
+
+		WebElement teesSection = driver.findElement(By.xpath("//a[contains(text(),'Tees')]"));
+		teesSection.click();
+
+		WebElement itemsContainer = driver.findElement(By.cssSelector(".products.wrapper.grid.products-grid"));
+		List<WebElement> items = itemsContainer.findElements(By.tagName("li"));
+
+		// Loop to add first 3 items
+		for (int i = 0; i < 3 && i < items.size(); i++) {
+			// Store item URL before clicking
+			String itemUrl = items.get(i).findElement(By.tagName("a")).getAttribute("href");
+
+			// Open item in a new tab
+			((JavascriptExecutor) driver).executeScript("window.open('" + itemUrl + "', '_blank');");
+
+			// Switch to the new tab
+			ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+			driver.switchTo().window(tabs.get(1));
+
+			// Select size
+			WebElement sizeContainer = driver
+					.findElement(By.cssSelector("div[class='swatch-attribute size'] div[role='listbox']"));
+			List<WebElement> sizes = sizeContainer.findElements(By.tagName("div"));
+
+			if (!sizes.isEmpty()) {
+				sizes.get(0).click(); // Select the first available size
+			}
+
+			// Select color
+			WebElement colorsContainer = driver
+					.findElement(By.cssSelector("div[class='swatch-attribute color'] div[role='listbox']"));
+			List<WebElement> colors = colorsContainer.findElements(By.tagName("div"));
+
+			if (!colors.isEmpty()) {
+				colors.get(0).click(); // Select the first available color
+			}
+
+			// Add to cart
+			WebElement addToCart = driver.findElement(By.cssSelector(".action.tocart.primary"));
+			addToCart.click();
+
+			Thread.sleep(2000);
+
+			// Close the current tab
+			driver.close();
+
+			// Switch back to the main tab
+			driver.switchTo().window(tabs.get(0));
+
+		}
+
+		driver.navigate().refresh();
+		
+
+		WebElement cartButton = driver.findElement(By.className("counter"));
+		cartButton.click();
+
+		WebElement totalItems = driver.findElement(By.cssSelector(".count"));
+		String actualItems = totalItems.getText();
+		String expectedItems = "3";
+		Assert.assertEquals(actualItems, expectedItems);
+
+		WebElement PricesContainer = driver
+				.findElement(By.cssSelector("span[data-bind='html: cart().subtotal_excl_tax'] span[class='price']"));
+		String actualPrice = PricesContainer.getText();
+
+		List<WebElement> AllPrices = PricesContainer.findElements(By.className("price"));
+		for (WebElement priceElement : AllPrices) {
+			String priceText = priceElement.getText();
+
+			// Remove the "$" sign and the decimal ".00"
+			String priceWithoutDollar = priceText.replace("$", "").split("\\.")[0];
+
+			// Convert the remaining string to an integer
+			int price = Integer.parseInt(priceWithoutDollar);
+
+			String expectedPrice = Integer.toString(price);
+			Assert.assertEquals(actualPrice, expectedPrice);
+
+		}
+
+	}
+
+	@Test(priority = 5, enabled = true)
+	public void addMenItems() {
+		
+		int randItems = rand.nextInt();
+		WebElement menSection = driver.findElement(By.id("ui-id-5"));
+		menSection.click();
+		WebElement itemsContainer = driver.findElement(By.cssSelector(".product-items.widget-product-grid"));
+
+		List<WebElement> items = itemsContainer.findElements(By.tagName("li"));
+		randItems = rand.nextInt(items.size());
+		items.get(randItems).click();
+
+		WebElement sizeContainer = driver
+				.findElement(By.cssSelector("div[class='swatch-attribute size'] div[role='listbox']"));
+		List<WebElement> sizes = sizeContainer.findElements(By.tagName("div"));
+		randItems = rand.nextInt(sizes.size());
+		sizes.get(randItems).click();
+
+		WebElement colorsContainer = driver
+				.findElement(By.cssSelector("div[class='swatch-attribute color'] div[role='listbox']"));
+		List<WebElement> colors = colorsContainer.findElements(By.tagName("div"));
+
+		randItems = rand.nextInt(colors.size());
+		colors.get(randItems).click();
+
+		WebElement addToCart = driver.findElement(By.id("product-addtocart-button"));
+		addToCart.click();
+
+		String addMenAsElement = driver.findElement(By.className("message-success")).getText();
+		boolean actualaddMen = addMenAsElement.contains("You added");
+		boolean expectedaddMen = true;
+		org.testng.Assert.assertEquals(actualaddMen, expectedaddMen);
 
 	}
 
