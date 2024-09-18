@@ -14,21 +14,12 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class MagentoSoftwareTesting {
-
-	WebDriver driver = new ChromeDriver();
-	Random rand = new Random();
-	String URLSite = "https://magento.softwaretestingboard.com/";
-	String singOutPage = "https://magento.softwaretestingboard.com/customer/account/logout/";
-	String password = "12345678#Test";
-	String emailAddressToSignInPage = "";
+public class MagentoSoftwareTesting extends Parameters {
 
 	@BeforeTest
 	public void setup() {
 
-		driver.get(URLSite);
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		GeneralSetup();
 	}
 
 	@Test(priority = 1, enabled = true)
@@ -36,25 +27,6 @@ public class MagentoSoftwareTesting {
 
 		WebElement creatAnAccountButton = driver.findElement(By.linkText("Create an Account"));
 		creatAnAccountButton.click();
-
-		String[] firs_tNames = { "Alice", "Bob", "Charlie", "David", "Eva", "Frank", "Grace", "Helen", "Ivan", "Judy",
-				"Kathy", "Leo", "Mona", "Nina", "Oscar" };
-		String[] last_Names = { "Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis",
-				"Rodriguez", "Martinez", "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson" };
-		String[] email_Address = { "@Gmail.com", "@Yahoo.com", "@Outlook.com" };
-
-		int randNamber = rand.nextInt(444);
-		int randomIndexForFirstName = rand.nextInt(firs_tNames.length);
-		int randomIndexForLastName = rand.nextInt(last_Names.length);
-		int randomIndexForEmail = rand.nextInt(email_Address.length);
-		String randFirstName = firs_tNames[randomIndexForFirstName];
-		String randLastName = last_Names[randomIndexForLastName];
-		String domanEmail = email_Address[randomIndexForEmail];
-		String firstName = "firstname";
-		String lastName = "lastname";
-		String emailAddress = "email_address";
-		String passwordInput = "password";
-		String passwordConfirmation = "password-confirmation";
 
 		WebElement firstNameButtom = driver.findElement(By.id(firstName));
 		WebElement lastNameButton = driver.findElement(By.id(lastName));
@@ -76,9 +48,8 @@ public class MagentoSoftwareTesting {
 
 		WebElement messageAsWebElement = driver
 				.findElement(By.cssSelector("div[data-bind='html: $parent.prepareMessageForHtml(message.text)']"));
-		String actualMessage = messageAsWebElement.getText();
-		String expectedMessage = "Thank you for registering with Main Website Store.";
-		Assert.assertEquals(actualMessage, expectedMessage);
+		String actualMessageAsAccount = messageAsWebElement.getText();
+		Assert.assertEquals(actualMessageAsAccount, expectedMessageAsAccount);
 
 	}
 
@@ -88,7 +59,6 @@ public class MagentoSoftwareTesting {
 
 		WebElement signOutAsElement = driver.findElement(By.xpath("//span[@data-ui-id='page-title-wrapper']"));
 		String actualSignOut = signOutAsElement.getText();
-		String expectedSignOut = "You are signed out";
 		Assert.assertEquals(actualSignOut, expectedSignOut);
 
 	}
@@ -111,16 +81,13 @@ public class MagentoSoftwareTesting {
 
 		String messageAsSingIn = driver.findElement(By.cssSelector("div[class='panel header'] span[class='logged-in']"))
 				.getText();
-		boolean actualMessage = messageAsSingIn.contains("Welcome");
-		boolean expectedMessage = true;
-		Assert.assertEquals(actualMessage, expectedMessage);
+		boolean actualMessageAsSignIn = messageAsSingIn.contains("Welcome");
+		Assert.assertEquals(actualMessageAsSignIn, expectedMessageAsSignIn);
 
 	}
 
 	@Test(priority = 4, enabled = true)
 	public void addWomenItem() throws InterruptedException {
-
-		int randItems = rand.nextInt();
 
 		WebElement womenSection = driver
 				.findElement(By.cssSelector("a[id='ui-id-4'] span[class='ui-menu-icon ui-icon ui-icon-carat-1-e']"));
@@ -184,7 +151,6 @@ public class MagentoSoftwareTesting {
 
 		WebElement totalItems = driver.findElement(By.cssSelector(".count"));
 		String actualItems = totalItems.getText();
-		String expectedItems = "3";
 		Assert.assertEquals(actualItems, expectedItems);
 
 		WebElement PricesContainer = driver
@@ -211,7 +177,6 @@ public class MagentoSoftwareTesting {
 	@Test(priority = 5, enabled = true)
 	public void addMenItems() {
 
-		int randItems = rand.nextInt();
 		WebElement menSection = driver.findElement(By.id("ui-id-5"));
 		menSection.click();
 		WebElement itemsContainer = driver.findElement(By.cssSelector(".product-items.widget-product-grid"));
@@ -238,7 +203,6 @@ public class MagentoSoftwareTesting {
 
 		String addMenAsElement = driver.findElement(By.className("message-success")).getText();
 		boolean actualaddMen = addMenAsElement.contains("You added");
-		boolean expectedaddMen = true;
 		org.testng.Assert.assertEquals(actualaddMen, expectedaddMen);
 
 	}

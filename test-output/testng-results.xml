@@ -2,32 +2,32 @@
 <testng-results ignored="0" total="5" passed="5" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-09-19T02:22:03 AST" name="Default suite" finished-at="2024-09-19T02:22:52 AST" duration-ms="49386">
+  <suite started-at="2024-09-19T02:55:22 AST" name="Default suite" finished-at="2024-09-19T02:56:07 AST" duration-ms="44937">
     <groups>
     </groups>
-    <test started-at="2024-09-19T02:22:03 AST" name="Default test" finished-at="2024-09-19T02:22:52 AST" duration-ms="49386">
+    <test started-at="2024-09-19T02:55:22 AST" name="Default test" finished-at="2024-09-19T02:56:07 AST" duration-ms="44937">
       <class name="magentoSoftwareTestingBoard.MagentoSoftwareTesting">
-        <test-method is-config="true" signature="setup()[pri:0, instance:magentoSoftwareTestingBoard.MagentoSoftwareTesting@52b56a3e]" started-at="2024-09-19T02:22:03 AST" name="setup" finished-at="2024-09-19T02:22:04 AST" duration-ms="1417" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:magentoSoftwareTestingBoard.MagentoSoftwareTesting@4eed46ee]" started-at="2024-09-19T02:55:22 AST" name="setup" finished-at="2024-09-19T02:55:24 AST" duration-ms="1763" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="createAnAccountTest()[pri:1, instance:magentoSoftwareTestingBoard.MagentoSoftwareTesting@52b56a3e]" started-at="2024-09-19T02:22:04 AST" name="createAnAccountTest" finished-at="2024-09-19T02:22:10 AST" duration-ms="5758" status="PASS">
+        <test-method signature="createAnAccountTest()[pri:1, instance:magentoSoftwareTestingBoard.MagentoSoftwareTesting@4eed46ee]" started-at="2024-09-19T02:55:24 AST" name="createAnAccountTest" finished-at="2024-09-19T02:55:30 AST" duration-ms="5965" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createAnAccountTest -->
-        <test-method signature="signUp()[pri:2, instance:magentoSoftwareTestingBoard.MagentoSoftwareTesting@52b56a3e]" started-at="2024-09-19T02:22:10 AST" name="signUp" finished-at="2024-09-19T02:22:11 AST" duration-ms="1112" status="PASS">
+        <test-method signature="signUp()[pri:2, instance:magentoSoftwareTestingBoard.MagentoSoftwareTesting@4eed46ee]" started-at="2024-09-19T02:55:30 AST" name="signUp" finished-at="2024-09-19T02:55:31 AST" duration-ms="1054" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- signUp -->
-        <test-method signature="signIn()[pri:3, instance:magentoSoftwareTestingBoard.MagentoSoftwareTesting@52b56a3e]" started-at="2024-09-19T02:22:11 AST" name="signIn" finished-at="2024-09-19T02:22:15 AST" duration-ms="4379" status="PASS">
+        <test-method signature="signIn()[pri:3, instance:magentoSoftwareTestingBoard.MagentoSoftwareTesting@4eed46ee]" started-at="2024-09-19T02:55:31 AST" name="signIn" finished-at="2024-09-19T02:55:35 AST" duration-ms="4379" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- signIn -->
-        <test-method signature="addWomenItem()[pri:4, instance:magentoSoftwareTestingBoard.MagentoSoftwareTesting@52b56a3e]" started-at="2024-09-19T02:22:15 AST" name="addWomenItem" finished-at="2024-09-19T02:22:41 AST" duration-ms="25795" status="PASS">
+        <test-method signature="addWomenItem()[pri:4, instance:magentoSoftwareTestingBoard.MagentoSoftwareTesting@4eed46ee]" started-at="2024-09-19T02:55:35 AST" name="addWomenItem" finished-at="2024-09-19T02:56:00 AST" duration-ms="24973" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- addWomenItem -->
-        <test-method signature="addMenItems()[pri:5, instance:magentoSoftwareTestingBoard.MagentoSoftwareTesting@52b56a3e]" started-at="2024-09-19T02:22:41 AST" name="addMenItems" finished-at="2024-09-19T02:22:52 AST" duration-ms="10835" status="PASS">
+        <test-method signature="addMenItems()[pri:5, instance:magentoSoftwareTestingBoard.MagentoSoftwareTesting@4eed46ee]" started-at="2024-09-19T02:56:00 AST" name="addMenItems" finished-at="2024-09-19T02:56:07 AST" duration-ms="6703" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- addMenItems -->

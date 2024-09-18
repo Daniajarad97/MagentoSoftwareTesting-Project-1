@@ -7,7 +7,6 @@
         <methods>
           <include name="addWomenItem"/>
           <include name="setup"/>
-          <include name="addMenItems"/>
         </methods>
       </class> <!-- magentoSoftwareTestingBoard.MagentoSoftwareTesting -->
     </classes>
