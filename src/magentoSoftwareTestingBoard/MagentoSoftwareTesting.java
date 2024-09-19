@@ -207,4 +207,8 @@ public class MagentoSoftwareTesting extends Parameters {
 
 	}
 
+	@Test(priority = 6, enabled = true)
+	public void addBagsItems() {
+	}
+
 }
